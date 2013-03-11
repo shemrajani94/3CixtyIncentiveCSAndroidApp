@@ -14,6 +14,7 @@ import com.comp1008.serveranalytics.R;
  * These include choosing to view Lab rooms, printers or the settings
  *  */
 
+
 public class MainMenuActivity extends Activity {
     
     Button labsButton, printersButton, settingsButton;
