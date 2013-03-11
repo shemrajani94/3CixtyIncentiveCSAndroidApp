@@ -13,7 +13,6 @@ import com.comp1008.serveranalytics.R;
 /* MainMenuActivity will show the user an option to choose multiple tasks..
  * These include choosing to view Lab rooms, printers or the settings
  *  */
-// Testing Push
 public class MainMenuActivity extends Activity {
     
     Button labsButton, printersButton, settingsButton;
