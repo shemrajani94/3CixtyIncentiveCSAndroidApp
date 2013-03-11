@@ -23,6 +23,7 @@ public class MainMenuActivity extends Activity {
 	printersButton = (Button) findViewById(R.id.printersButton);
 	settingsButton = (Button) findViewById(R.id.settingsButton);
 	
+	//Do stuff when lab button is pushed
 	labsButton.setOnClickListener(new OnClickListener() {
 	    
 	    @Override
