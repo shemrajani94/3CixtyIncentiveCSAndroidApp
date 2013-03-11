@@ -19,6 +19,7 @@ public class MainMenuActivity extends Activity {
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_main);
 	
+	// Declares our buttons 
 	labsButton = (Button) findViewById(R.id.labsButton);
 	printersButton = (Button) findViewById(R.id.printersButton);
 	settingsButton = (Button) findViewById(R.id.settingsButton);
@@ -33,6 +34,7 @@ public class MainMenuActivity extends Activity {
 	    }
 	});
 	
+	// Opens the PrinterListActivity when pressed
 	printersButton.setOnClickListener(new OnClickListener() {
 	    
 	    @Override
@@ -42,6 +44,7 @@ public class MainMenuActivity extends Activity {
 	    }
 	});
 
+	// Opens the SettingsActivity when pressed
 	settingsButton.setOnClickListener(new OnClickListener() {
     
 	    @Override
