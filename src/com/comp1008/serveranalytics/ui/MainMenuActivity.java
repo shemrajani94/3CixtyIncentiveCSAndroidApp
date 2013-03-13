@@ -14,7 +14,6 @@ import com.comp1008.serveranalytics.R;
  * These include choosing to view Lab rooms, printers or the settings
  *  */
 
-
 public class MainMenuActivity extends Activity {
     
     Button labsButton, printersButton, settingsButton;
@@ -62,7 +61,7 @@ public class MainMenuActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-	// Inflate the menu; this adds items to the action bar if it is present.
+	// Inflate the menu; this adds items to the action bar if it is present
 	getMenuInflater().inflate(R.menu.main, menu);
 	return true;
     }
