@@ -5,22 +5,34 @@ import java.io.InputStream;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+/*
+ * Generic class for handling the opening of a filestream
+ * Requires android context to open the file
+ */
+
 
 public class FileReader {
 	
 	private InputStream fileStream;
+	private AssetManager assetManager;
 	
-	public FileReader(String fileName, Context context) throws IOException
+	public FileReader(String fileName, Context context)
 	{
-		AssetManager assetManager = context.getAssets();
+		assetManager = context.getAssets();
 		try
-		{	
-			this.fileStream = assetManager.open(fileName);
+		{
+			initialiseInputStream(fileName);
 		}
 		catch (Exception IOException)
 		{
 			//handle exception somehow
 		}
+		
+	}
+	
+	private void initialiseInputStream(String fileName) throws IOException
+	{
+		this.fileStream = assetManager.open(fileName);
 	}
 	
 	public InputStream getInputStream()
@@ -28,4 +40,5 @@ public class FileReader {
 		return fileStream;
 	}
 
+	
 }

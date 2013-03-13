@@ -12,12 +12,14 @@ public class DataController {
 	private ArrayList<Machine> listOfMachines = new ArrayList<Machine>();
 	private ArrayList<Printer> listOfPrinters = new ArrayList<Printer>();
 	private Context context;
+	private LocalServerDataReader localDataReader;
 	
 	public DataController(Context context)
 	{
 		this.context = context;
 		initializePrinterList();
 		initializeMachineList();
+		this.localDataReader = new LocalServerDataReader(context, this);
 	}
 	
 	//initializes the printer list, when the DataController object is created
@@ -46,5 +48,15 @@ public class DataController {
 	{
 		Iterator<Printer> printersIterator = listOfPrinters.iterator();
 		return printersIterator;
+	}
+	
+	public void addMachine(Machine m)
+	{
+		listOfMachines.add(m);
+	}
+	
+	public void addPrinter(Printer p)
+	{
+		listOfPrinters.add(p);
 	}
 }
