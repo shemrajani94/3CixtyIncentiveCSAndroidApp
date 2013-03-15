@@ -18,7 +18,7 @@ public class LocalServerDataReader {
 	{
 		this.currentDataController = dc;
 	
-		file = new FileReader("alldata,txt", context).getInputStream();
+		file = new FileReader("alldata.txt", context).getInputStream();
 
 	}
 	
