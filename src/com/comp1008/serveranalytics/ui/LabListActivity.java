@@ -16,7 +16,7 @@ import com.comp1008.serveranalytics.R;
 
 public class LabListActivity extends Activity implements AdapterView.OnItemClickListener {
     
-    private String labs[] = { "Lab 1", "Lab 2", "Lab 3" };
+    private String labs[] = { "Room 4.06", "Room 1.05", "Room 1.21" };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
