@@ -30,6 +30,10 @@
             android:name="com.comp1008.serveranalytics.ui.PrinterListActivity"
             android:label="@string/title_activity_printer_list" >
         </activity>
+        <activity
+            android:name="com.comp1008.serveranalytics.LabMapActivity"
+            android:label="@string/title_activity_lab_map" >
+        </activity>
     </application>
 
 </manifest>

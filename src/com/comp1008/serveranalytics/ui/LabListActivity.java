@@ -33,14 +33,13 @@ public class LabListActivity extends Activity implements AdapterView.OnItemClick
     public void onItemClick(AdapterView parent, View v, int position, long id) {
 	/* This Method should get list of computers in lab on button click, 
 	 * way in which LabMapActivity is called needs to be decided. */
-	String localclass = labs[position];
-	try {
-	    Class ourClass = Class.forName("com.comp1008.serveranalytics.ui." + localclass);
-	    Intent intent = new Intent(LabListActivity.this, ourClass);
-	    startActivity(intent);
-	} catch(ClassNotFoundException e){
-	    e.printStackTrace();
-	}
+	String labName = labs[position];
+	Intent intent = new Intent(LabListActivity.this, LabMapActivity.class);
+	Bundle lab = new Bundle();
+	lab.putString("lab", labName);
+	intent.putExtras(lab);
+	startActivity(intent);
+
     }
     
     @Override
