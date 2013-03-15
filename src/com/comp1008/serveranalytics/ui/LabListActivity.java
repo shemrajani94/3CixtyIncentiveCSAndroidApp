@@ -23,7 +23,7 @@ public class LabListActivity extends Activity implements AdapterView.OnItemClick
 	super.onCreate(savedInstanceState);
 	setContentView(R.layout.activity_lab_list);
 	// Creates an ArrayAdapter for the String array Labs.
-	ArrayAdapter<String> adapter = new ArrayAdapter<String>(LabListActivity.this, android.R.layout.simple_list_item_1, labs);
+	ArrayAdapter<String> adapter = new ArrayAdapter<String>(LabListActivity.this, R.layout.lab_list_custom, labs);
 	// This ListView is in the XML activity_lab_list 
 	ListView listOfLabs = (ListView) findViewById(R.id.listOfLabs);
 	listOfLabs.setAdapter(adapter);
@@ -31,8 +31,8 @@ public class LabListActivity extends Activity implements AdapterView.OnItemClick
     
     @Override
     public void onItemClick(AdapterView parent, View v, int position, long id) {
-	/* This Method should get list of computers in lab on button click, 
-	 * way in which LabMapActivity is called needs to be decided. */
+	/* This method will send a Bundle with A string to the LabMapActivity,
+	 * LabMapActivity */
 	String localclass = labs[position];
 	try {
 	    Class ourClass = Class.forName("com.comp1008.serveranalytics.ui." + localclass);
