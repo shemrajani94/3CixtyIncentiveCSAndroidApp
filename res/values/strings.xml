@@ -7,6 +7,8 @@
     <string name="title_activity_lab_list">Computer Labs</string>
     <string name="title_activity_printer_list">List of Printers</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_lab_map">LabMapActivity</string>
+    <string name="title_activity_lab_map">Computers in chosen lab</string>
+    <string name="title_activity_computer">ComputerActivity</string>
+    <string name="string_computername_content"/>
 
 </resources>

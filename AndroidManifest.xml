@@ -34,6 +34,10 @@
             android:name="com.comp1008.serveranalytics.ui.LabMapActivity"
             android:label="@string/title_activity_lab_map" >
         </activity>
+        <activity
+            android:name="com.comp1008.serveranalytics.ui.ComputerActivity"
+            android:label="@string/title_activity_computer" >
+        </activity>
     </application>
 
 </manifest>

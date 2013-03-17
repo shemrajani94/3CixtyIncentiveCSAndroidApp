@@ -1,0 +1,85 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ComputerActivity" >
+
+    <TextView
+        android:id="@+id/computername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Computer Name:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/computername_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="computername"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    
+    <TableRow> <TextView /></TableRow>
+
+    <TextView
+        android:id="@+id/computerip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IP Address:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+        android:id="@+id/computerip_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="123.12.13.14"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     <TableRow> <TextView /></TableRow>
+     
+     <TextView
+        android:id="@+id/computerlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Computer Location:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+        android:id="@+id/computerlocation_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="computerlocation"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+      <TableRow> <TextView /></TableRow>
+      
+      <TextView
+        android:id="@+id/computerstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+        android:id="@+id/computerstatus_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Online"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+     
+     <TableRow> <TextView /></TableRow>
+     
+      <TextView
+        android:id="@+id/computerlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Current Login:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+     <TextView
+        android:id="@+id/computerlogin_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No User"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</TableLayout>

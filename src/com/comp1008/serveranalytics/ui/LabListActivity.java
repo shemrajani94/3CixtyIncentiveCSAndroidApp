@@ -41,10 +41,10 @@ public class LabListActivity extends Activity implements AdapterView.OnItemClick
     	String labName = labs[position];
     	Log.v("labClick", "Clicked lab " + labName);
     	Intent intent = new Intent(LabListActivity.this, LabMapActivity.class);
-	Bundle lab = new Bundle();
-	lab.putString("lab", labName);
-	intent.putExtras(lab);
-	startActivity(intent);
+    	Bundle lab = new Bundle();
+    	lab.putString("lab", labName);
+		intent.putExtras(lab);
+		startActivity(intent);
     }
     
     @Override
