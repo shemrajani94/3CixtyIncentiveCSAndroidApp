@@ -71,13 +71,13 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
 		 * Passes string of lab name corresponding to button pressed to labMapActivity  */
 		String computerName = computers[position];
 		Log.v("labClick", "Clicked computer " + computerName);
-		/*
-		Intent intent = new Intent(LabListActivity.this, LabMapActivity.class);
-		Bundle lab = new Bundle();
-		lab.putString("lab", labName);
-		intent.putExtras(lab);
+		
+		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
+		Bundle computer = new Bundle();
+		computer.putString("computer", computerName);
+		intent.putExtras(computer);
 		startActivity(intent);
-		 */
+		 
 	}
 
     @Override
