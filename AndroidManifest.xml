@@ -42,6 +42,11 @@
             android:name="com.comp1008.serveranalytics.ui.PrinterActivity"
             android:label="@string/title_activity_printer" >
         </activity>
+         <activity
+            android:name="com.comp1008.serveranalytics.ui.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>

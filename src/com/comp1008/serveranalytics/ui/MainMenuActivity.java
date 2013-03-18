@@ -58,7 +58,7 @@ public class MainMenuActivity extends Activity implements View.OnClickListener {
 	// Opens the SettingsActivity when pressed
 	case(R.id.settingsButton):
 	    intent = new Intent(MainMenuActivity.this, SettingsActivity.class);
-	    MainMenuActivity.this.startActivity(intent);
+		MainMenuActivity.this.startActivity(intent);
 	break;
 	
 	default:
