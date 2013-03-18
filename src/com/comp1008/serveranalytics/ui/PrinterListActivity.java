@@ -41,7 +41,7 @@ public class PrinterListActivity extends Activity implements AdapterView.OnItemC
     // For now it just passes the string to the main menu
     public void onItemClick(AdapterView adapter, View v, int position, long id){
     	String PrinterName = printers[position];
-    	Intent intent = new Intent(PrinterListActivity.this, MainMenuActivity.class);
+    	Intent intent = new Intent(PrinterListActivity.this, PrinterActivity.class);
     	Bundle printer = new Bundle();
     	printer.putString("printer", PrinterName);
     	intent.putExtras(printer);

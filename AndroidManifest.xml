@@ -38,6 +38,10 @@
             android:name="com.comp1008.serveranalytics.ui.ComputerActivity"
             android:label="@string/title_activity_computer" >
         </activity>
+        <activity
+            android:name="com.comp1008.serveranalytics.ui.PrinterActivity"
+            android:label="@string/title_activity_printer" >
+        </activity>
     </application>
 
 </manifest>
