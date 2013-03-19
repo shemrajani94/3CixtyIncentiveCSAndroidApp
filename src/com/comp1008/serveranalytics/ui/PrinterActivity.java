@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
 import android.widget.TextView;
-
+/*
+ * Activity which shows all information available about a chosen printer
+ */
 public class PrinterActivity extends Activity {
 
 	private String printerName;
@@ -19,7 +21,7 @@ public class PrinterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_printer);
 		
-
+		//unpack printer name string from bundle given
     	Bundle printerGiven = getIntent().getExtras();
     	if (printerGiven!=null)
     	{

@@ -19,10 +19,9 @@ import com.comp1008.serveranalytics.R;
  * at what frequency they would like to poll the server for information about printers and computers */
 
 
-public class SettingsActivity extends Activity implements OnClickListener, OnCheckedChangeListener{
+public class SettingsActivity extends Activity implements OnCheckedChangeListener{
 
 	TextView settingsTitle, pollingTitle, test;
-	Button returnButton;
 	RadioGroup freqSelection;
 	String setData;
 	
@@ -30,7 +29,6 @@ public class SettingsActivity extends Activity implements OnClickListener, OnChe
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_settings);
 		initialize();
@@ -38,11 +36,8 @@ public class SettingsActivity extends Activity implements OnClickListener, OnChe
 	}
 
 	private void initialize() {
-		// TODO Auto-generated method stub
 		settingsTitle = (TextView) findViewById(R.id.settingsTitle);
 		pollingTitle = (TextView) findViewById(R.id.pollingTitle);
-		returnButton = (Button) findViewById(R.id.returnButton);
-		returnButton.setOnClickListener(this);
 		freqSelection = (RadioGroup) findViewById(R.id.rgSettings);
 		freqSelection.setOnCheckedChangeListener(this);
 		//Creates on click and on checkedChangeListeners for the button and radiogroup
@@ -51,18 +46,9 @@ public class SettingsActivity extends Activity implements OnClickListener, OnChe
 		//Textview used as test to see if radiobuttons are working
 	}
 
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		intent = new Intent(SettingsActivity.this, MainMenuActivity.class);
-		SettingsActivity.this.startActivity(intent);
-		//When the returnButton is pressed, ManMenuActivity is loaded
-		
-	}
 	//Switch statement that adjusts textView according to radiobutton settings
 	@Override
 	public void onCheckedChanged(RadioGroup arg0, int arg1) {
-		// TODO Auto-generated method stub
 		switch(arg1){
 		case R.id.radio0:
 			setData = "Option 1 chosen (every 2 mins)";

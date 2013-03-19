@@ -14,7 +14,10 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 import com.comp1008.serveranalytics.R;
-
+/*
+ * Tabbed activity which contains the mapview on one tab and the list of machines in the lab
+ * on the other tab.
+ */
 public class LabMapActivity extends Activity implements AdapterView.OnItemClickListener {
 	
 	private String labName;

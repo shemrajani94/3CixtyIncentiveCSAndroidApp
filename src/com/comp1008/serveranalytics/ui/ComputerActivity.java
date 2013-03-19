@@ -6,7 +6,9 @@ import android.view.Menu;
 import android.widget.TextView;
 
 import com.comp1008.serveranalytics.R;
-
+/*
+ * Activity which shows all information available about a chosen computer
+ */
 public class ComputerActivity extends Activity {
 	
 	private String computerName;
@@ -16,7 +18,7 @@ public class ComputerActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_computer);
 		
-
+		//unpacks the computerName string from the bundle given
     	Bundle computerGiven = getIntent().getExtras();
     	if (computerGiven!=null)
     	{

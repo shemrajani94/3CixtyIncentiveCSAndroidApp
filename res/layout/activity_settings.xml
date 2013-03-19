@@ -83,14 +83,6 @@
         </RadioGroup>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/returnButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="@string/setting_done"
-        android:textSize="30sp"  />
-
     <TextView
         android:id="@+id/radiotester"
         android:layout_width="wrap_content"
