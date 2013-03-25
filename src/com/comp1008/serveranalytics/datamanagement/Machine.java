@@ -14,5 +14,10 @@ public class Machine {
 	{
 		//initialize machine variables
 	}
+	
+	public String getStatus()
+	{
+		return status;
+	}
 
 }

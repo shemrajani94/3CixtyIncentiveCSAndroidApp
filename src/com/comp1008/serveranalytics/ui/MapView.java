@@ -1,6 +1,8 @@
 package com.comp1008.serveranalytics.ui;
 
+import com.comp1008.serveranalytics.R;
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,6 +12,9 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
+
+import com.comp1008.serveranalytics.map.Map;
+
 
 /*
  * This class is the canvas where the map is drawn
@@ -35,16 +40,26 @@ public class MapView extends View {
     private float mScaleFactor = 1.0f;
     private float mScaleCenterX;
     private float mScaleCenterY;
+    private Map map;
 	
+    //overload all the possible constructors
 	public MapView(Context context) {
 		super(context);
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+		map = new Map(context);
 	}
 	
 	public MapView(Context context, AttributeSet attribs) {
 		super(context, attribs);
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+		map = new Map(context);
 	}
+	
+    public MapView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
+		map = new Map(context);
+    }
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -56,13 +71,11 @@ public class MapView extends View {
 
         
         canvas.save();
+        
         canvas.translate(mPosX, mPosY);
         canvas.scale(mScaleFactor, mScaleFactor, mScaleCenterX, mScaleCenterY);
-        
-        redPaint.setColor(Color.GREEN);
-        canvas.drawRect(l,t,r,b, redPaint);     
-        redPaint.setColor(Color.RED);
-        canvas.drawRect(l+r/3,t+b/3,r-r/3,b-b/3, redPaint);
+            	
+        map.draw(canvas);
         
         canvas.restore();
     }
@@ -74,8 +87,11 @@ public class MapView extends View {
         canvasHeight = View.MeasureSpec.getSize(heightMS);
         setMeasuredDimension(canvasWidth, canvasHeight);
     }
-    //code to recognise touch events that will allow panning and zooming of map
-    //based on code from http://android-developers.blogspot.co.uk/2010/06/making-sense-of-multitouch.html
+    
+    /*code to recognise touch events that will allow panning and zooming of map
+    *mostly code from http://android-developers.blogspot.co.uk/2010/06/making-sense-of-multitouch.html
+    *made some adjustments to center zoom on focus of zoom gesture rather than focusing zoom on point (0,0)
+    */
     
     private static final int INVALID_POINTER_ID = -1;
 
@@ -88,6 +104,7 @@ public class MapView extends View {
     	final int action = ev.getAction();
     	switch (action & MotionEvent.ACTION_MASK) {
     		case MotionEvent.ACTION_DOWN: {
+    			
     			final float x = ev.getX();
         		final float y = ev.getY();
         
@@ -103,7 +120,8 @@ public class MapView extends View {
     			final float y = ev.getY(pointerIndex);
 
     			// Only move if the ScaleGestureDetector isn't processing a gesture.
-    			if (!mScaleDetector.isInProgress()) {
+    			if (!mScaleDetector.isInProgress())
+    			{
     					final float dx = x - mLastTouchX;
     					final float dy = y - mLastTouchY;
 
@@ -148,7 +166,7 @@ public class MapView extends View {
     	return true;
     }
 
-
+    //checks current touch state for scale gesture
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
     @Override
     	public boolean onScale(ScaleGestureDetector detector) {
@@ -156,6 +174,7 @@ public class MapView extends View {
         
     		// Don't let the object get too small or too large.
     		mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+    		//get the midpoint between the two fingers zooming (to control zoom center)
     		mScaleCenterX = detector.getFocusX();
     		mScaleCenterY = detector.getFocusY();
     		invalidate();
