@@ -9,6 +9,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 
 import com.comp1008.serveranalytics.R;
+import com.comp1008.serveranalytics.datamanagement.MapFileReader;
 /*
  * Objects of this class hold all the objects in a map, the map can then be drawn to
  * a canvas using the draw(Canvas canvas) function.
@@ -24,8 +25,12 @@ public class Map {
 	public Map(Context context)
 	{
 		Bitmap computerImage = getResizedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.computer_pic),70,70);
-		computers.add(new MapComputer(20f,20f,computerImage));
-		computers.add(new MapComputer(-60f,20f,computerImage));
+		MapFileReader mapFile = new MapFileReader("lab406.txt", context); //get lab map for given lab (using lab406 for dummy), chosen lab decided by given lab clicked
+		computers = mapFile.getComputers();
+		for (MapComputer computer: computers)
+		{
+			computer.setImage(computerImage);
+		}
 		
 	}
 	

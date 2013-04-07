@@ -14,7 +14,13 @@ public class MapObject implements MapObjectIF {
 	private float y;
 	private Bitmap image;
 	private Paint paint;
-	
+	public MapObject(float x, float y)
+	{
+		this.x = x;
+		this.y = y;
+		this.paint = new Paint();
+		
+	}
 	public MapObject(float x, float y, Bitmap image)
 	{
 		this.x = x;
@@ -61,7 +67,10 @@ public class MapObject implements MapObjectIF {
 	public boolean getMoveable() {
 		return moveable;
 	}
-	
+	public void setImage(Bitmap image)
+	{
+		this.image = image;
+	}
 	public Bitmap getImage()
 	{
 		return image;

@@ -11,11 +11,18 @@ public class MapComputer extends MapObject{
 	
 	Machine assignedMachine;
 	Paint textPaint = new Paint();
-	
+	public MapComputer(float x, float y) {
+		super(x, y);
+		
+		textPaint.setColor(Color.WHITE);
+		textPaint.setAntiAlias(true);
+		
+	}
 	public MapComputer(float x, float y, Bitmap image) {
 		super(x, y, image);
 		
-		textPaint.setColor(Color.BLACK);
+		textPaint.setColor(Color.WHITE);
+		textPaint.setAntiAlias(true);
 		
 	}
 	
@@ -27,7 +34,7 @@ public class MapComputer extends MapObject{
 		
 		if (assignedMachine != null)
 		{
-			canvas.drawText(assignedMachine.getStatus(), super.getX(), super.getY()+height, textPaint);
+			canvas.drawText(assignedMachine.getStatus(), super.getX(), super.getY()+height+10, textPaint);
 		}
 		else
 		{

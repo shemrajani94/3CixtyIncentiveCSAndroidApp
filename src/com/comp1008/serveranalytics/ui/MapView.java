@@ -26,7 +26,7 @@ public class MapView extends View {
 	private int r;
 	private int t;
 	private int b;
-	private Paint redPaint = new Paint();
+	private Paint genericPaint = new Paint();
     private int canvasWidth;
     private int canvasHeight;
     
@@ -71,9 +71,19 @@ public class MapView extends View {
 
         
         canvas.save();
-        
+        //keep the panning in certain bounds
+        Log.v("mPos", "mPosY = " + mPosY + " || " + "mPosX = " + mPosX + " || " + "mScaleFactor = " + mScaleFactor);
+        if (mPosX > 200*mScaleFactor*mScaleFactor) { mPosX = 200*mScaleFactor*mScaleFactor; }
+        if (mPosX < -200*mScaleFactor*mScaleFactor) { mPosX = -200*mScaleFactor*mScaleFactor; }
+        if (mPosY > 200*mScaleFactor*mScaleFactor) { mPosY = 200*mScaleFactor*mScaleFactor; }
+        if (mPosY < -200*mScaleFactor*mScaleFactor) { mPosY = -200*mScaleFactor*mScaleFactor; }
         canvas.translate(mPosX, mPosY);
         canvas.scale(mScaleFactor, mScaleFactor, mScaleCenterX, mScaleCenterY);
+        genericPaint.setColor(Color.BLACK);
+        canvas.drawRect(l-10000, t-10000,r+10000,b+10000, genericPaint);
+        
+        genericPaint.setColor(Color.RED);
+        canvas.drawRect(l, t,r,b, genericPaint);
             	
         map.draw(canvas);
         
@@ -173,7 +183,7 @@ public class MapView extends View {
     		mScaleFactor *= detector.getScaleFactor();
         
     		// Don't let the object get too small or too large.
-    		mScaleFactor = Math.max(0.1f, Math.min(mScaleFactor, 5.0f));
+    		mScaleFactor = Math.max(0.5f, Math.min(mScaleFactor, 5.0f));
     		//get the midpoint between the two fingers zooming (to control zoom center)
     		mScaleCenterX = detector.getFocusX();
     		mScaleCenterY = detector.getFocusY();
@@ -183,3 +193,5 @@ public class MapView extends View {
     }
 
 }
+
+
