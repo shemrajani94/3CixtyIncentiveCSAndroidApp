@@ -1,6 +1,6 @@
 package com.comp1008.serveranalytics.map;
 
-import com.comp1008.serveranalytics.datamanagement.Machine;
+import com.comp1008.serveranalytics.datamanagement.Computer;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -9,7 +9,7 @@ import android.graphics.Paint;
 
 public class MapComputer extends MapObject{
 	
-	Machine assignedMachine;
+	Computer assignedMachine;
 	Paint textPaint = new Paint();
 	public MapComputer(float x, float y) {
 		super(x, y);

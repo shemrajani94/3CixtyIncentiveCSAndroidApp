@@ -11,7 +11,7 @@ import android.widget.Toast;
  * Contains methods for accessing data from ui activities
  */
 public class DataController {
-	private ArrayList<Machine> listOfMachines = new ArrayList<Machine>();
+	private ArrayList<Computer> listOfComputers = new ArrayList<Computer>();
 	private ArrayList<Printer> listOfPrinters = new ArrayList<Printer>();
 	private Context context;
 	private LocalServerDataReader localDataReader;
@@ -20,10 +20,10 @@ public class DataController {
 	{
 		this.context = context;
 		getPrinterList();
-		getMachineList();
+		getComputerList();
 		try
 		{
-			this.localDataReader = new LocalServerDataReader(context, this);
+			this.localDataReader = new LocalServerDataReader(context);
 		}
 		catch (IOException e)
 		{
@@ -31,6 +31,12 @@ public class DataController {
 			int duration = Toast.LENGTH_SHORT;
 			Toast toast = Toast.makeText(context, text, duration);
 			toast.show();
+		}
+		
+		if (localDataReader!=null)
+		{
+			listOfComputers = localDataReader.loadComputerList();
+			listOfPrinters = localDataReader.loadPrinterList();
 		}
 	}
 	
@@ -41,30 +47,28 @@ public class DataController {
 	}
 	
 	//initializes the machine list, when the DataController object is created
-	private void getMachineList()
+	private void getComputerList()
 	{
 		//get machines from file and populate list
 	}
 	
 	/*get an Iterator over the machines list to access the list of current machines from
 	anywhere in the app */
-	public Iterator<Machine> getMachineIterator()
+	public Iterator<Computer> getComputerIterator()
 	{
-		Iterator<Machine> machinesIterator = listOfMachines.iterator();
-		return machinesIterator;
+		return listOfComputers.iterator();
 	}
 	
 	/*get an Iterator over the printers list to access the list of current machines from
 	anywhere in the app */
 	public Iterator<Printer> getPrinterIterator()
 	{
-		Iterator<Printer> printersIterator = listOfPrinters.iterator();
-		return printersIterator;
+		return listOfPrinters.iterator();
 	}
 	
-	public void addMachine(Machine m)
+	public void addMachine(Computer m)
 	{
-		listOfMachines.add(m);
+		listOfComputers.add(m);
 	}
 	
 	public void addPrinter(Printer p)

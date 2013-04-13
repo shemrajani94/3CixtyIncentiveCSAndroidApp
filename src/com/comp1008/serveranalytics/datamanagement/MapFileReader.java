@@ -9,15 +9,18 @@ import com.comp1008.serveranalytics.map.MapComputer;
 import com.comp1008.serveranalytics.map.MapDoor;
 
 import android.content.Context;
+import android.widget.Toast;
 
 public class MapFileReader {
 	private FileReader file;
 	private ArrayList<MapDoor> doors = new ArrayList<MapDoor>();
 	private ArrayList<MapComputer> computers = new ArrayList<MapComputer>();
 	private Scanner in;
+	Context readerContext;
 	
 	public MapFileReader(String roomName, Context context) throws IOException
 	{
+		readerContext = context;
 		file = new FileReader(roomName, context);
 		InputStream input = file.getInputStream();
 		in = new Scanner(input); 
@@ -94,8 +97,31 @@ public class MapFileReader {
 		    }
 		}
 		
-		float xF = Float.parseFloat(x);
-		float yF = Float.parseFloat(y);
+		float xF = 0;
+		float yF = 0;
+		
+		try
+		{
+			xF = Float.parseFloat(x);
+		}
+		catch (NumberFormatException e)
+		{
+			CharSequence text = "Error Loading Map File";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(readerContext, text, duration);
+			toast.show();
+		}
+		try
+		{
+			yF = Float.parseFloat(y);
+		}
+		catch (NumberFormatException e)
+		{
+			CharSequence text = "Error Loading Map File";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(readerContext, text, duration);
+			toast.show();
+		}
 		computers.add(new MapComputer(xF,yF));
 		
 	}
