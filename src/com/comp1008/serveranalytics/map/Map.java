@@ -1,5 +1,6 @@
 package com.comp1008.serveranalytics.map;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -7,6 +8,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.widget.Toast;
 
 import com.comp1008.serveranalytics.R;
 import com.comp1008.serveranalytics.datamanagement.MapFileReader;
@@ -20,20 +22,54 @@ public class Map {
 	
 	private ArrayList<MapDoor> doors = new ArrayList<MapDoor>();
 	private ArrayList<MapComputer> computers = new ArrayList<MapComputer>();
+	private MapFileReader mapFile;
 	
 	
-	public Map(Context context)
+	public Map(Context context, String labName)
 	{
+		String mapFileName = getLabFileName(labName);
 		Bitmap computerImage = getResizedBitmap(BitmapFactory.decodeResource(context.getResources(), R.drawable.computer_pic),70,70);
-		MapFileReader mapFile = new MapFileReader("lab406.txt", context); //get lab map for given lab (using lab406 for dummy), chosen lab decided by given lab clicked
-		computers = mapFile.getComputers();
-		for (MapComputer computer: computers)
+		try
 		{
-			computer.setImage(computerImage);
+			mapFile = new MapFileReader(mapFileName, context); //get lab map for given lab (using lab406 for dummy), chosen lab decided by given lab clicked
+		}
+		catch(IOException e)
+		{
+			CharSequence text = "Couldn't load map file";
+			int duration = Toast.LENGTH_SHORT;
+			Toast toast = Toast.makeText(context, text, duration);
+			toast.show();
+		}
+		
+		if (mapFile != null)
+		{	
+			computers = mapFile.getComputers();
+			for (MapComputer computer: computers)
+			{
+				computer.setImage(computerImage);
+			}
 		}
 		
 	}
 	
+	private String getLabFileName(String labName) {
+		String labFileName = null;
+		if (labName.equals("Room 4.06"))
+		{
+			labFileName = "lab406.txt";
+		}
+		else if (labName.equals("Room 1.21"))
+		{
+			labFileName = "lab121.txt";
+		}
+		else if (labName.equals("Room 1.05"))
+		{
+			labFileName = "lab105.txt";
+		}
+		
+		return labFileName;
+	}
+
 	public void draw(Canvas canvas)
 	{
 		for(MapComputer computer : computers)

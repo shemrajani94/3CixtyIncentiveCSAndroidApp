@@ -32,12 +32,7 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
     protected void onCreate(Bundle savedInstanceState) {
     	
     	Bundle labNameGiven = getIntent().getExtras();
-    	if (labName!=null)
-    	{
-    		labName = labNameGiven.getString("lab");
-    	}
-    	
-    	
+    	labName = labNameGiven.getString("lab");   	
     	
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_map);
@@ -88,6 +83,11 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_lab_map, menu);
         return true;
+    }
+    
+    public String getLabName()
+    {
+    	return labName;
     }
     
 }

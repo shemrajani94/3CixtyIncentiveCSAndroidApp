@@ -1,6 +1,8 @@
 package com.comp1008.serveranalytics.ui;
 
 import com.comp1008.serveranalytics.R;
+
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -45,20 +47,23 @@ public class MapView extends View {
     //overload all the possible constructors
 	public MapView(Context context) {
 		super(context);
+		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
-		map = new Map(context);
+		map = new Map(context, mapActivity.getLabName());
 	}
 	
 	public MapView(Context context, AttributeSet attribs) {
 		super(context, attribs);
+		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
-		map = new Map(context);
+		map = new Map(context, mapActivity.getLabName());
 	}
 	
     public MapView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+		LabMapActivity mapActivity = (LabMapActivity)this.getContext();
 		mScaleDetector = new ScaleGestureDetector(context, new ScaleListener());
-		map = new Map(context);
+		map = new Map(context, mapActivity.getLabName());
     }
 	
 	@Override

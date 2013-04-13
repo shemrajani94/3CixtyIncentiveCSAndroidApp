@@ -1,5 +1,6 @@
 package com.comp1008.serveranalytics.datamanagement;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ public class MapFileReader {
 	private ArrayList<MapComputer> computers = new ArrayList<MapComputer>();
 	private Scanner in;
 	
-	public MapFileReader(String roomName, Context context)
+	public MapFileReader(String roomName, Context context) throws IOException
 	{
 		file = new FileReader(roomName, context);
 		InputStream input = file.getInputStream();

@@ -14,7 +14,7 @@ public class LocalServerDataReader {
 	InputStream file;
 	DataController currentDataController;
 	
-	public LocalServerDataReader(Context context, DataController dc)
+	public LocalServerDataReader(Context context, DataController dc) throws IOException
 	{
 		this.currentDataController = dc;
 	
