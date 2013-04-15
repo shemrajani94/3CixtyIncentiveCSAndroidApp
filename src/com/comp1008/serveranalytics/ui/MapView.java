@@ -1,14 +1,19 @@
 package com.comp1008.serveranalytics.ui;
 
+import java.util.Iterator;
+
 import com.comp1008.serveranalytics.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Rect;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -16,6 +21,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import com.comp1008.serveranalytics.map.Map;
+import com.comp1008.serveranalytics.map.MapComputer;
 
 
 /*
@@ -43,6 +49,7 @@ public class MapView extends View {
     private float mScaleCenterX;
     private float mScaleCenterY;
     private Map map;
+    private Rect clipBounds;
 	
     //overload all the possible constructors
 	public MapView(Context context) {
@@ -77,7 +84,7 @@ public class MapView extends View {
         
         canvas.save();
         //keep the panning in certain bounds
-        Log.v("mPos", "mPosY = " + mPosY + " || " + "mPosX = " + mPosX + " || " + "mScaleFactor = " + mScaleFactor);
+        //Log.v("mPos", "mPosY = " + mPosY + " || " + "mPosX = " + mPosX + " || " + "mScaleFactor = " + mScaleFactor);
         if (mPosX > 200*mScaleFactor*mScaleFactor) { mPosX = 200*mScaleFactor*mScaleFactor; }
         if (mPosX < -200*mScaleFactor*mScaleFactor) { mPosX = -200*mScaleFactor*mScaleFactor; }
         if (mPosY > 200*mScaleFactor*mScaleFactor) { mPosY = 200*mScaleFactor*mScaleFactor; }
@@ -89,7 +96,7 @@ public class MapView extends View {
         
         genericPaint.setColor(Color.RED);
         canvas.drawRect(l, t,r,b, genericPaint);
-            	
+        clipBounds = canvas.getClipBounds();    	
         map.draw(canvas);
         
         canvas.restore();
@@ -122,10 +129,34 @@ public class MapView extends View {
     			
     			final float x = ev.getX();
         		final float y = ev.getY();
+        		Log.v("touch", "x = " + x + " || " + "y = " + y);
         
         		mLastTouchX = x;
         		mLastTouchY = y;
         		mActivePointerId = ev.getPointerId(0);
+        		
+        		//check if a computer has been tapped
+        		Iterator<MapComputer> computers = map.getMapComputers();
+        		while (computers.hasNext())
+        		{
+        			MapComputer computer = computers.next();
+        			float compX = computer.getX();
+        			float compY = computer.getY();
+        			float width = computer.getImage().getWidth();
+        			
+        			float newX = x / mScaleFactor + clipBounds.left;
+        			float newY = y / mScaleFactor + clipBounds.top;
+        			
+        			Log.v("touch", "compX = " + compX + " || compY = " + compY + " || width = " + width);
+        			if(newX > compX && newX < compX+width && newY > compY && newY <compY+width)
+        			{
+        				Log.v("touch", "computer touched");
+        				LabMapActivity activity = (LabMapActivity) this.getContext();
+        				activity.startComputerActivity(computer.getAssignedComputer());
+        			}
+        		}
+        		
+        		
         		break;
     		}
         

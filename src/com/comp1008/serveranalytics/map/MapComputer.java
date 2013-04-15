@@ -49,5 +49,10 @@ public class MapComputer extends MapObject{
 		}
 		
 	}
+	
+	public Computer getAssignedComputer()
+	{
+		return assignedComputer;
+	}
 
 }

@@ -2,6 +2,7 @@ package com.comp1008.serveranalytics.map;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -95,6 +96,11 @@ public class Map {
 	    // recreate the new Bitmap with the scaling matrix
 	    Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
 	    return resizedBitmap;
+	}
+	
+	public Iterator<MapComputer> getMapComputers()
+	{
+		return computers.iterator();
 	}
 
 }

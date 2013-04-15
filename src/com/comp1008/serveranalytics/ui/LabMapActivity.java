@@ -102,17 +102,9 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
 		 * Passes string of lab name corresponding to button pressed to labMapActivity  */
 		String computerName = computerNames[position];
 		Log.v("labClick", "Clicked computer " + computerName);
-		Computer computer = getComputerByName(computerName);
-		
-		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
-		Bundle computerBundle = new Bundle();
-		computerBundle.putString("ip", computer.getIpAddress());
-		computerBundle.putString("user", computer.getCurrentLogin());
-		computerBundle.putString("name", computer.getName());
-		computerBundle.putString("room", computer.getLabRoom());
-		computerBundle.putString("status", computer.getStatus());
-		intent.putExtras(computerBundle);
-		startActivity(intent);
+		Computer computer = data.getComputerByName(computerName);
+		startComputerActivity(computer);
+
 		 
 	}
 
@@ -128,19 +120,17 @@ public class LabMapActivity extends Activity implements AdapterView.OnItemClickL
     	return labName;
     }
     
-    private Computer getComputerByName(String name)
+    public void startComputerActivity(Computer computer)
     {
-    	Iterator<Computer> computers = data.getComputerIterator();
-    	Computer returnComputer = null;
-    	while (computers.hasNext())
-    	{
-    		Computer computer = computers.next();
-    		if (computer.getName().equals(name))
-    		{
-    			returnComputer = computer;
-    		}
-    	}
-    	return returnComputer;
+		Intent intent = new Intent(LabMapActivity.this, ComputerActivity.class);
+		Bundle computerBundle = new Bundle();
+		computerBundle.putString("ip", computer.getIpAddress());
+		computerBundle.putString("user", computer.getCurrentLogin());
+		computerBundle.putString("name", computer.getName());
+		computerBundle.putString("room", computer.getLabRoom());
+		computerBundle.putString("status", computer.getStatus());
+		intent.putExtras(computerBundle);
+		startActivity(intent);
     }
     
 }
