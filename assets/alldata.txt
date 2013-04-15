@@ -17,7 +17,7 @@ COMPUTERS
 123.34.56.16,online,Room 4.06,username,computer16
 123.34.56.17,online,Room 4.06,username,computer17
 123.34.56.18,online,Room 1.05,username,computer18
-123.34.56.19,online,Room 1.05,username,computer29
+123.34.56.19,online,Room 1.05,username,computer19
 123.34.56.20,online,Room 1.05,username,computer20
 123.34.56.21,online,Room 1.05,username,computer21
 123.34.56.22,online,Room 1.05,username,computer22

@@ -61,6 +61,7 @@ public class MapFileReader {
 		String name = "";
 		String x = "";
 		String y = "";
+		String computerName = "";
 		int charCount = 0;
 		
 		for (charCount = 0; charCount < line.length(); charCount++){
@@ -87,13 +88,24 @@ public class MapFileReader {
 		}
 		for (charCount = charCount+1; charCount < line.length(); charCount++){
 		    char c = line.charAt(charCount);        
-		    if (c == '\n')
+		    if (c == ',')
 		    {
 		    	break;
 		    }
 		    else
 		    {
 		    	y = y+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == '\n')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	computerName = computerName+Character.toString(c);
 		    }
 		}
 		
@@ -122,7 +134,11 @@ public class MapFileReader {
 			Toast toast = Toast.makeText(readerContext, text, duration);
 			toast.show();
 		}
-		computers.add(new MapComputer(xF,yF));
+		DataController data = new DataController(readerContext);
+		Computer computer = data.getComputerByName(computerName);
+		//if computer not found then the computer that the MapComputer is initialised with is null
+		//this will mean no info is displayed for that mapcomputer on the map but the map will load fine
+		computers.add(new MapComputer(xF,yF,computer));
 		
 	}
 	

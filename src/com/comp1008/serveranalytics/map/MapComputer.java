@@ -9,7 +9,7 @@ import android.graphics.Paint;
 
 public class MapComputer extends MapObject{
 	
-	Computer assignedMachine;
+	Computer assignedComputer;
 	Paint textPaint = new Paint();
 	public MapComputer(float x, float y) {
 		super(x, y);
@@ -25,6 +25,13 @@ public class MapComputer extends MapObject{
 		textPaint.setAntiAlias(true);
 		
 	}
+	public MapComputer(float x, float y, Computer assignedComputer) {
+		super(x, y);
+		this.assignedComputer = assignedComputer;
+		textPaint.setColor(Color.WHITE);
+		textPaint.setAntiAlias(true);
+		
+	}
 	
 	@Override
 	public void draw(Canvas canvas)
@@ -32,9 +39,9 @@ public class MapComputer extends MapObject{
 		super.draw(canvas);		
 		float height = super.getImage().getHeight();
 		
-		if (assignedMachine != null)
+		if (assignedComputer != null)
 		{
-			canvas.drawText(assignedMachine.getStatus(), super.getX(), super.getY()+height+10, textPaint);
+			canvas.drawText(assignedComputer.getName(), super.getX(), super.getY()+height+10, textPaint);
 		}
 		else
 		{

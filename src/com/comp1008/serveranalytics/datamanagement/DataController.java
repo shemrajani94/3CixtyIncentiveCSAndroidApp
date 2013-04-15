@@ -66,7 +66,7 @@ public class DataController {
 		return listOfPrinters.iterator();
 	}
 	
-	public void addMachine(Computer m)
+	public void addComputer(Computer m)
 	{
 		listOfComputers.add(m);
 	}
@@ -74,5 +74,17 @@ public class DataController {
 	public void addPrinter(Printer p)
 	{
 		listOfPrinters.add(p);
+	}
+	
+	public Computer getComputerByName(String name)
+	{
+		for (Computer c : listOfComputers)
+		{
+			if (c.getName().equals(name))
+			{
+				return c;
+			}
+		}
+		return null;
 	}
 }
