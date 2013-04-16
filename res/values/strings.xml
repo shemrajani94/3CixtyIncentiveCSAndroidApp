@@ -20,5 +20,6 @@
     <string name="title_activity_printer">PrinterActivity</string>
     <string name="SettingsPage">Settings</string>
     <string name="option5">Every 10 Hours</string>
+    <string name="settings_save">Save</string>
 
 </resources>
