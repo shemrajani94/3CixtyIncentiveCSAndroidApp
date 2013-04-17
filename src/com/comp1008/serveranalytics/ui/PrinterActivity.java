@@ -31,8 +31,10 @@ public class PrinterActivity extends Activity {
     	{
     		printerName = printerGiven.getString("printer");
     	}
+    	//gets the relevant printer object for the name passed to the activity
     	printer = data.getPrinterByName(printerName);
     	
+    	//fills in text fields for printer info
     	TextView printerNameView = (TextView)findViewById(R.id.printername_content);
     	printerNameView.setText(printer.getName());
     	TextView printerIpView = (TextView)findViewById(R.id.printerip_content);
@@ -41,6 +43,12 @@ public class PrinterActivity extends Activity {
     	printerStatusView.setText(printer.getStatus());
     	TextView printerTonerView = (TextView)findViewById(R.id.tonerremaining_content);
     	printerTonerView.setText(printer.getTonerRemaining());
+    	
+    	/*add code to display printer queue properly
+    	* will need to create another list in the xml to do this or something
+    	* look into how to display a table of data then put that in the xml
+    	* then populate it dynamically using the printer.getQueueItemsIterator();
+    	*/
 	}
 	
 	
