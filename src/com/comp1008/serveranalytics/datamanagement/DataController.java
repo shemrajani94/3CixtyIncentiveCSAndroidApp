@@ -16,11 +16,10 @@ public class DataController {
 	private Context context;
 	private LocalServerDataReader localDataReader;
 	
+	@SuppressWarnings("unchecked")
 	public DataController(Context context)
 	{
 		this.context = context;
-		getPrinterList();
-		getComputerList();
 		try
 		{
 			this.localDataReader = new LocalServerDataReader(context);
@@ -35,22 +34,12 @@ public class DataController {
 		
 		if (localDataReader!=null)
 		{
-			listOfComputers = localDataReader.loadComputerList();
-			listOfPrinters = localDataReader.loadPrinterList();
+			ArrayList<ArrayList> data = localDataReader.loadData();
+			listOfComputers = (ArrayList<Computer>)data.get(0);
+			listOfPrinters = (ArrayList<Printer>)data.get(1);
 		}
 	}
 	
-	//initializes the printer list, when the DataController object is created
-	private void getPrinterList()
-	{
-		//get printers from file and populate list
-	}
-	
-	//initializes the machine list, when the DataController object is created
-	private void getComputerList()
-	{
-		//get machines from file and populate list
-	}
 	
 	/*get an Iterator over the machines list to access the list of current machines from
 	anywhere in the app */
@@ -83,6 +72,18 @@ public class DataController {
 			if (c.getName().equals(name))
 			{
 				return c;
+			}
+		}
+		return null;
+	}
+
+
+	public Printer getPrinterByName(String name) {
+		for (Printer p : listOfPrinters)
+		{
+			if (p.getName().equals(name))
+			{
+				return p;
 			}
 		}
 		return null;

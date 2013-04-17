@@ -40,4 +40,14 @@ COMPUTERS
 123.34.56.39,online,Room 1.21,username,computer39
 123.34.56.40,online,Room 1.21,username,computer40
 PRINTERS
+PRINTER
+printer1,111.12.12.1,online,14%
+QUEUE
+ADocument.doc,Printing,username1,3,122KB,10:11:12 AM 4/4/2013
+PRINTER
+printer2,111.12.12.13,online,93%
+QUEUE
+Stuff.doc,Printing,username13,12,404KB,10:11:01 AM 4/4/2013
+TopSecret.pdf,Waiting,username2,40,4029KB,10:11:59 AM 4/4/2013
+END
 END

@@ -13,22 +13,28 @@ import android.content.Context;
 
 public class LocalServerDataReader {
 	
-	private InputStream file;
+	private FileReader file;
 	private Scanner in;
+	private String line;
 	
 	public LocalServerDataReader(Context context) throws IOException
 	{
 	
-		file = new FileReader("alldata.txt", context).getInputStream();
-		
-		if (file!=null)
-		{
-			in = new Scanner(file);
-		}
+		file = new FileReader("alldata.txt", context);
+		in = new Scanner(file.getInputStream());
+
 
 	}
 	
-	public ArrayList<Computer> loadComputerList()
+	public ArrayList<ArrayList> loadData()
+	{
+		ArrayList<ArrayList> data = new ArrayList<ArrayList>();
+		data.add(loadComputerList());
+		data.add(loadPrinterList());
+		return data;
+	}
+	
+	private ArrayList<Computer> loadComputerList()
 	{
 		ArrayList<Computer> computers = new ArrayList<Computer>();
 		while (in.hasNext())
@@ -123,9 +129,200 @@ public class LocalServerDataReader {
 		return computer;
 	}
 	
-	public ArrayList<Printer> loadPrinterList()
+	private ArrayList<Printer> loadPrinterList()
 	{
-		return null;
+		ArrayList<Printer> printers = new ArrayList<Printer>();
+		while (in.hasNext())
+		{
+			String line = in.nextLine();
+			if(line.equals("PRINTER"))
+			{
+				line = in.nextLine();
+				printers.add(parsePrinter(in, line));
+			}
+			else if (line.equals("END"))
+			{
+				break;
+			}
+			else
+			{
+				printers.add(parsePrinter(in,line));
+			}
+		}
+		return printers;
 	}
-
+	
+	private Printer parsePrinter(Scanner in, String line)
+	{
+		int charCount = 0;
+		String ip = "";
+		String status = "";
+		String name = "";
+		String tonerRemaining = "";
+		
+		ArrayList<QueueItem> queue = new ArrayList<QueueItem>();
+		boolean gotPrinter = false;
+		while(in.hasNext())
+		{
+			if (line.equals("END") || line.equals("PRINTER"))
+			{
+				break;
+			}
+			else if (line.equals("QUEUE"))
+			{
+				queue = parseQueue(in);
+				break;
+			}
+			else if (!gotPrinter)
+			{
+				for (charCount = 0; charCount < line.length(); charCount++){
+				    char c = line.charAt(charCount);        
+				    if (c == ',')
+				    {
+				    	break;
+				    }
+				    else
+				    {
+				    	name = name+Character.toString(c);
+				    }
+				}
+				for (charCount = charCount+1; charCount < line.length(); charCount++){
+				    char c = line.charAt(charCount);        
+				    if (c == ',')
+				    {
+				    	break;
+				    }
+				    else
+				    {
+				    	ip = ip+Character.toString(c);
+				    }
+				}
+				for (charCount = charCount+1; charCount < line.length(); charCount++){
+				    char c = line.charAt(charCount);        
+				    if (c == ',')
+				    {
+				    	break;
+				    }
+				    else
+				    {
+				    	status = status+Character.toString(c);
+				    }
+				}
+				for (charCount = charCount+1; charCount < line.length(); charCount++){
+				    char c = line.charAt(charCount);        
+				    if (c == '\n')
+				    {
+				    	break;
+				    }
+				    else
+				    {
+				    	tonerRemaining = tonerRemaining+Character.toString(c);
+				    }
+				}
+				gotPrinter = true;
+			}
+			line = in.nextLine();
+		}
+		
+		
+		return new Printer(ip,status,name,tonerRemaining,queue);
+	}
+	
+	
+	private ArrayList<QueueItem> parseQueue(Scanner in)
+	{
+		ArrayList<QueueItem> queue = new ArrayList<QueueItem>();
+		while (in.hasNext())
+		{
+			String line = in.nextLine();
+			if (!line.equals("END") && !line.equals("PRINTER"))
+			{
+				queue.add(parseQueueItem(line));
+			}
+			else
+			{
+				break;
+			}
+		}
+		return queue;
+	}
+	
+	private QueueItem parseQueueItem(String line)
+	{
+		String name = "";
+		String status = "";
+		String user = "";
+		String pages = "";
+		String size = "";
+		String time = "";
+		int charCount = 0;
+		for (charCount = 0; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	name = name+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	status = status+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	user = user+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	pages = pages+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == ',')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	size = size+Character.toString(c);
+		    }
+		}
+		for (charCount = charCount+1; charCount < line.length(); charCount++){
+		    char c = line.charAt(charCount);        
+		    if (c == '\n')
+		    {
+		    	break;
+		    }
+		    else
+		    {
+		    	time = time+Character.toString(c);
+		    }
+		}
+		
+		return new QueueItem (name, status, user, pages, size, time);
+	}
 }
