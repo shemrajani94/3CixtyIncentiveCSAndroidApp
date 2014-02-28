@@ -1,0 +1,15 @@
+//Lexer.lex/lex-code-method=0
+//Lexer.lex/lex-comply-jlex=false
+//Lexer.lex/lex-output=src
+//Lexer.lex/lex-skip-min=false
+//Parser.cup/cup-compact-red=false
+//Parser.cup/cup-debug=false
+//Parser.cup/cup-expected-conflicts=0
+//Parser.cup/cup-no-positions=false
+//Parser.cup/cup-no-scanner=false
+//Parser.cup/cup-non-terms=true
+//Parser.cup/cup-output=src
+//Parser.cup/cup-parser-class=Cup
+//Parser.cup/cup-symbols-class=Sym
+//Parser.cup/cup-symbols-if=true
+eclipse.preferences.version=1
